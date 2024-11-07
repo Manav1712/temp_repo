@@ -23,7 +23,7 @@ def select_data(x_train, y_train, beta_epsilon_all, score_array, selected_mask, 
 
 
         selected_x = beta_epsilon_all[select_index:select_index+1]
-        selected_y = getData("http://host.docker.internal:8080/", num_days, num_simulations, selected_x[0].tolist())
+        selected_y = getData("https://gleam-seir-api-883627921778.us-west1.run.app/original", num_days, num_simulations, selected_x[0].tolist())
         #getData("http://host.docker.internal:8000/", num_days, num_simulations, selected_x[0].tolist())
 
         x_train1 = np.repeat(selected_x, num_simulations, axis=0)

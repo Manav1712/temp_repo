@@ -9,7 +9,7 @@ def getData(url, days, sims, beta_epsilon):
         "epsilon": beta_epsilon[1]
     }
     
-    response = requests.post(url, json=params)
+    response = requests.post(url, headers= {"Content-Type": "application/json", "X-API-Key": "e54d4431-5dab-474e-b71a-0db1fcb9e659"},json=params)
     return response.json()
 '''
 def main():
@@ -22,8 +22,7 @@ def get_data(days, sims, beta_epsilon):
     'sims': sims,
     'beta_epsilon': beta_epsilon.tolist()
     }
-    data_request = requests.get("http://host.docker.internal:8080/multiple",headers= {"Content-Type": "application/json"},json=mult_params)
-    #requests.get("http://host.docker.internal:8000/multiple",headers= {"Content-Type": "application/json"},json=mult_params)
+    data_request = requests.post("https://gleam-seir-api-883627921778.us-west1.run.app/multiple",headers= {"Content-Type": "application/json", "X-API-Key": "e54d4431-5dab-474e-b71a-0db1fcb9e659"},json=mult_params)
     return np.array(json.loads(data_request.json())['train_set'])
     
     
